@@ -206,9 +206,15 @@ Blockly.BBasic.finish = function(code) {
 
   this.isInitialized = false;
 
-  this.nameDB_.reset();
-  const generatedBody = definitions.join('\n\n') + '\n\n\n' + code;
-  return handlebarsTemplate({
+this.nameDB_.reset();
+
+const generatedBody = definitions.join('\n\n') + '\n\n\n' + code;
+
+const configurationStorage = useConfigurationStorage();
+const romSize =
+  configurationStorage?.value?.romSize || '4k';
+
+return handlebarsTemplate({
   generatedBody,
   generatedBackgrounds,
   generatedAnimations,
@@ -219,9 +225,9 @@ Blockly.BBasic.finish = function(code) {
   gameOverStartEvent,
   gameOverUpdateEvent,
   generatedConfiguration,
-  romSize,});
+  romSize,
+});
 };
-
 Blockly.BBasic.normalizeIndents = function(code) {
   code = code.replace(/^[\t ]*/gm, Blockly.BBasic.INDENT);
   // Convert indent for labels
