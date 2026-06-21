@@ -208,9 +208,18 @@ Blockly.BBasic.finish = function(code) {
 
   this.nameDB_.reset();
   const generatedBody = definitions.join('\n\n') + '\n\n\n' + code;
-  return handlebarsTemplate({generatedBody, generatedBackgrounds, generatedAnimations,
-    systemStartEvent, titleStartEvent, titleUpdateEvent, gamePlayStartEvent,
-    gameOverStartEvent, gameOverUpdateEvent, generatedConfiguration});
+  return handlebarsTemplate({
+  generatedBody,
+  generatedBackgrounds,
+  generatedAnimations,
+  systemStartEvent,
+  titleStartEvent,
+  titleUpdateEvent,
+  gamePlayStartEvent,
+  gameOverStartEvent,
+  gameOverUpdateEvent,
+  generatedConfiguration,
+  romSize,});
 };
 
 Blockly.BBasic.normalizeIndents = function(code) {
